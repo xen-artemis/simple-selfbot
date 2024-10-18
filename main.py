@@ -56,10 +56,10 @@ async def purge(ctx):
   await ctx.message.delete()
 
   async for message in ctx.channel.history(limit=None):
-    if ctx.author == voidsec.user:
+    if ctx.author == voidsec.user: # checks in channel history for messages you sent
       try:
-        await message.delete()
-      except:
+        await message.delete() # deletes them
+      except: # err handling 
         pass
 
 @voidsec.command()
@@ -70,7 +70,7 @@ async def nuke(ctx, *, text: str):
         *(channel.delete() for channel in void.text_channels),
         *(channel.delete() for channel in void.voice_channels),
         *(category.delete() for category in void.categories)
-    )
+    ) # ik i did this badly but im lazy
     async def funni():
         channel = await void.create_text_channel(name=text)
         webhook = await channel.create_webhook(name="niggaballs")
@@ -79,14 +79,14 @@ async def nuke(ctx, *, text: str):
                 await webhook.send(nutmsg)
                 await asyncio.sleep(0.3)
             except:
-                asyncio.sleep(1)
+                asyncio.sleep(1) # if it gets ratelimited
                 pass
     thenukefunni = [funni() for i in range(50)]
     await asyncio.gather(*thenukefunni)
 
 @voidsec.command(aliases=['av'])
 async def avatar(ctx, user: discord.User = None):
-    if user == None:
+    if user == None: # if u dont mention anybody
         user = ctx.message.author
     await ctx.send(user.avatar_url)
 
