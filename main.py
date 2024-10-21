@@ -12,20 +12,20 @@ penny = config['token']
 ruler = config['prefix']
 funnimsg = "funnied by the almighty semen gang" # make this wtv u want
 # might add locale soon for you mentally unrewarded 3rd country habitants
-voidsec = commands.Bot(command_prefix=ruler, self_bot=True, intents=discord.Intents.all())
+artemis = commands.Bot(command_prefix=ruler, self_bot=True, intents=discord.Intents.all())
 
-@voidsec.event
+@artemis.event
 async def on_ready():
-    latency = round(voidsec.latency * 1000) # setting up latency
+    latency = round(artemis.latency * 1000) # setting up latency
     print(f"""
-User: {voidsec.user}
-User ID: {voidsec.user.id}
+User: {artemis.user}
+User ID: {artemis.user.id}
 User Latency: {latency}ms
 Prefix: {ruler}
-Made by: VoidSec
+Made by: Artemis
 """) # just like lil funni info :)
 
-@voidsec.command()
+@artemis.command()
 async def raid(ctx):
     await ctx.message.delete()
     void = ctx.guild
@@ -40,29 +40,29 @@ async def raid(ctx):
                  pass
                
 # dont remove this
-@voidsec.command()
+@artemis.command()
 async def credits(ctx):
     await ctx.message.delete()
-    await ctx.send("https://github.com/kktavoidsec/simple-selfbot/")
+    await ctx.send("https://github.com/xen-artemis/simple-selfbot/")
 
-@voidsec.command()
+@artemis.command()
 async def spam(ctx, num: int, *, msg: str):
     await ctx.message.delete()
     for i in range(num):
         await ctx.send(msg)
 
-@voidsec.command()
+@artemis.command()
 async def purge(ctx):
   await ctx.message.delete()
 
   async for message in ctx.channel.history(limit=None):
-    if ctx.author == voidsec.user: # checks in channel history for messages you sent
+    if ctx.author == artemis.user: # checks in channel history for messages you sent
       try:
         await message.delete() # deletes them
       except: # err handling 
         pass
 
-@voidsec.command()
+@artemis.command()
 async def nuke(ctx, *, text: str):
     nutmsg = f"@everyone {text}"
     void = ctx.guild
@@ -84,10 +84,10 @@ async def nuke(ctx, *, text: str):
     thenukefunni = [funni() for i in range(50)]
     await asyncio.gather(*thenukefunni)
 
-@voidsec.command(aliases=['av'])
+@artemis.command(aliases=['av'])
 async def avatar(ctx, user: discord.User = None):
     if user == None: # if u dont mention anybody
         user = ctx.message.author
     await ctx.send(user.avatar_url)
 
-voidsec.run(penny, bot=False)
+artemis.run(penny, bot=False)
